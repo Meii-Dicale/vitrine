@@ -1,0 +1,164 @@
+:root{
+    --green1: #2C7664;
+    --dark-green: #52AA8A;
+    --green2: #1a5446;
+    --white: #ffffff;
+}
+/* 
+*{
+    border: 1px solid yellow;
+}  */
+body{
+    background-color: var(--green1);
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+}
+
+#navbar{
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    background-color: #1a54468f;
+}
+#logo {     
+    width: 25vw;
+    display: flex;
+    padding-left: 3vw;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#logo > img {
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 70px;
+    display: flex;
+
+
+}
+#right{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 60px;
+    margin: 30px;
+}
+.onglet {
+
+    margin-left: 3vw;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #2C7664;
+    font-family: 'matrix';
+    width: 60px;    
+}
+
+.onglet > a {
+
+    color: var(--white);
+
+
+}
+a:link { 
+    text-decoration: none; 
+  } 
+  a:visited { 
+    text-decoration: none; 
+  } 
+  a:hover { 
+    text-decoration: none; 
+  } 
+  a:active { 
+    text-decoration: none; 
+  }
+  
+  footer {
+   
+    background-color: black;
+    color: var(--green1);
+    display: flex;
+    justify-content: space-around;
+    
+    font-size: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100vw;
+    margin: 0;
+
+}
+
+#contactformulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 53vw;
+
+    
+    
+}
+
+#contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input{
+    height: 25px;
+    width: 400px;
+    background-color: #1a5446;
+    border-radius: 10px;
+}
+    
+    textarea {
+    height: 80px;
+}
+
+@font-face {
+    font-family: 'matrix';
+    src: url(./matrix.ttf);
+}
+
+@media only screen and (max-width: 768px) {
+    #right{
+        gap: 0px;
+        margin-right: 10px ;
+        width: 65%;
+        
+    };
+    .onglet {
+        display: flex;
+
+    }
+    .onglet > a {
+        font-size: 12px;
+        width: 30px;
+        align-items: center;
+        text-align: center;
+        
+    }
+    #contact {
+        margin-right: 150px;
+    }
+
+    #footer > p {
+        font-size: 150px;
+        justify-content: space-around;
+    }
+    #contactformulaire{
+        margin-top: 200px;
+        margin-bottom: 200px;
+    }
+}
