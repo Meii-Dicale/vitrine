@@ -5,10 +5,9 @@
     --green2: #1a5446;
     --white: #ffffff;
 }
-/* *{
-    border: 2px solid yellow;
-    margin: 0;
-} */
+*{
+
+}
 header {
     background-image: url(./banner.png);
     margin-top: 84px;
@@ -20,12 +19,14 @@ body{
     display: flex;
     flex-direction: column;
     margin: 0;
+    
 }
     
 #first {
     display: flex;
     flex-direction: row;
     height: 15vw;
+    animation: Animatedbar 2s;
     
    
 
@@ -66,6 +67,7 @@ body{
     flex-direction: column;
     width: 25%;
     background-color: var(--green2);
+    
     
 }
 #coordonnees {
@@ -121,6 +123,7 @@ body{
 .titre-right {
     font-size: x-large;
     text-align: center;
+    
 }
 .listexp {
     text-align: left;
@@ -311,6 +314,11 @@ input{
     
     textarea {
     height: 80px;
+}
+
+@keyframes Animatedbar {
+    from { width: 0%;}
+    to { width: 100%; }
 }
 
 @font-face {

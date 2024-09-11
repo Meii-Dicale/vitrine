@@ -3,11 +3,30 @@
     --dark-green: #52AA8A;
     --green2: #1a5446;
     --white: #ffffff;
+    --dark-red: #330F0A;
+    --red1: #E71D36;
+    --red2: #E5CDC8;
 }
 
-/* *{
+.pilulered {
+    background-color: var(--dark-red) !important;
+    color: var(--red1) !important;
+}
+.rednavbar{
+    background-color: var(--red2) !important;
+    color:  var(--red1) !important;
+}
+@keyframes Animatedbar {
+    from { width: 30%;}
+    to { width: 100%; }
+}
+@keyframes grow {
+    from { transform: scale(1); }
+    to { transform: scale(1.2); }
+}
+*{
     border: 1px solid yellow;
-} */
+}
 body{
     background-color: var(--green1);
     display: flex;
@@ -38,6 +57,7 @@ body{
     align-items: center;
     border-radius: 70px;
     display: flex;
+    
 
 
 }
@@ -85,6 +105,7 @@ a:link {
 
 #second > img {
     width: 100%;
+    animation: Animatedbar 2s;
 }
 
 #third {
@@ -122,6 +143,8 @@ flex-direction: row;
 }
 
 
+
+
 #photocool {
     width: 35%;
     display: flex;
@@ -142,6 +165,9 @@ flex-direction: row;
     border-radius: 5%;
     width: 70%;
     padding: 3px;
+}
+#ovh:hover {
+    animation: grow 1s;
 }
 #aboutme {
     width: 65%;
@@ -274,6 +300,96 @@ input{
     height: 80px;
 }
 
+#todolistlink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#projectlist { 
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+
+}
+
+.project {
+    
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.projectlink > a {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.projectlink > a > img {
+    height: 80px;
+}
+.projectlink>a:link { 
+    text-decoration: none; 
+    color: black;
+  } 
+.projectlink>a:visited { 
+    text-decoration: none; 
+    color: black;
+  } 
+.projectlink>a:hover { 
+    text-decoration: none; 
+    color: black;
+  } 
+.projectlink>a:active { 
+    text-decoration: none; 
+    color: black;
+  }
+.projectdescription>a:link { 
+    text-decoration: none; 
+    color: black;
+  } 
+  .projectdescription>a:visited { 
+    text-decoration: none; 
+    color: black;
+  } 
+  .projectdescription>a:hover { 
+    text-decoration: none; 
+    color: black;
+  } 
+  .projectdescription>a:active { 
+    text-decoration: none; 
+    color: black;
+  }
+#seventh {
+    display: flex;
+    
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url(./pilule.jpeg);
+    background-size: cover;
+    height: 800px;
+}
+
+#clickme {
+    width: 150px;
+    height: 100px;
+    cursor: pointer;
+    margin-top: 200px;
+}
+#dontclickme {
+     width: 150px;
+    height: 100px;
+    cursor: pointer;
+    margin-top: 200px;
+}
 @font-face {
     font-family: 'matrix';
     src: url(./matrix.ttf);

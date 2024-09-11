@@ -1,0 +1,120 @@
+/* * {
+    border: 1px royalblue dotted;
+} */
+:root {
+    --couleur1: rgb(138, 15, 15);
+    --couleur2: lightgrey;
+    --couleur3: rgb(255, 255, 255);
+}
+.sombre{background-color: black; color: white;}
+
+body {
+    background-color: var(--couleur3);
+    color: var(--couleur1);
+    display: flex;
+}
+#contenant {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    
+}
+#saisie-input {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90vw;
+    gap: 0.5vw;
+    padding: 0.5vw;
+}
+#saisie-input > input {
+    background-color: var(--couleur2);
+    width: 80%;
+    border-radius: 0.5vw;
+}
+button#add {
+    width: 18%;
+    border: 1px solid var(--couleur1);
+    border-radius: 10px;
+    box-shadow: .3vw 3px var(--couleur1);
+}
+
+button#sombre {
+    display : flex;
+    justify-content: flex-end;
+    background-color: black;
+    color: white;
+    border: 1px solid var(--couleur1);
+    border-radius: 10px;
+}
+#cadre {
+    display: flex;
+    width: 90vw;}
+ul {
+    width: 100%;
+}
+li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    border: 1px solid var(--couleur1);
+    gap: 1vw;
+    padding: 0.5vw;
+    height: auto;
+}
+li > button {
+    justify-self: flex-end;
+}
+button {
+    background-color: white;
+    color: black;
+    border: 1px solid var(--couleur1);
+    border-radius: 10px;
+}
+
+ul{
+  list-style-type: none;
+}
+li{
+  color: black;
+  border-radius: 15px;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    body{
+        background-color: #22427c;}
+    #saisie-input {
+        display: flex;
+        justify-content: space-between;
+        gap: 1em 1em;
+        background-color: #6394f0;
+        width: 95vw;
+        position: sticky;
+        top: 83.5%;
+        left: 2.5vw;
+        border-radius: 20px;
+        overflow-y: auto;
+        order : 2;
+        }
+    button#add {
+            width: 16%;
+        }
+    #cadre {
+            order: 1;
+        }
+    #contenant {
+            background-color: #6394f0;
+            border-radius: 20px;}
+       
+    #saisie-input > input {
+            width: 78%;
+        }
+    }
