@@ -78,7 +78,7 @@ lettreDivs.forEach(div => {
                 return
 
             }
-        if (currentCol < letters.length ) {  // S'assurer que la colonne ne dépasse pas la longueur du mot
+            if (currentCol < letters.length ) {  // S'assurer que la colonne ne dépasse pas la longueur du mot
                 let cell = document.getElementById("letter" + currentRow + currentCol);
                 cell.textContent = lettre;
                 currentCol++; // Passer à la prochaine colonne
@@ -87,17 +87,11 @@ lettreDivs.forEach(div => {
 
 
                // Si la ligne est terminée, passer à la ligne suivante
-               if (currentCol === letters.length && lettre === "_entree") { verify
+               if (currentCol === letters.length && lettre === "_entree") { verify(letters, currentRow);
+                
                 
                 // ICI il faut ajouter une fonction qui compare les éléments
-               function verify () {
-                    for(currentCol = 0, currentCol > count; currentCol++;);
-                    let cell = document.getElementById("letter" + currentRow + currentCol);
-                console.log(cell);
-                        if (cell.textContent = letters[currentCol])
-                        { cell.addAttribute ("class", "correct")
-                } //else { return}
-                }  
+             
                 currentRow++; // passer à la ligne 
                 currentCol = 0; // Réinitialiser la colonne pour la prochaine ligne
                 
@@ -105,4 +99,34 @@ lettreDivs.forEach(div => {
               return; }
     }});
 });
+
+
+// Fonction de vérification des lettres ( on défini la victoire en true, et dès qu'une lettre est mal placé ou incorrect la valeur gagné passe en false)
+function verify(letters, currentRow){
+    let victoire = true
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + currentRow + col);
+        if (cell.textContent === letters[col]) {
+            cell.setAttribute("class", "correct");
+        } else {
+        if (letters.includes(cell.textContent) ) {
+            cell.setAttribute("class", "misplaced");
+            victoire = false;
+
+        }else{
+          
+     {
+            // Tu peux ajouter d'autres classes ici si la lettre est incorrecte, par exemple :
+            cell.setAttribute("class", "incorrect");
+            victoire = false;
+        }}
+        
+    }
+
+
+   
+    if (victoire) {
+        alert("gagné");};
+
+}}
 
