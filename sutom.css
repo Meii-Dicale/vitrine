@@ -113,7 +113,7 @@ h1 {
     font-weight: bold;
     background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
 }
-.input-lettre {
+.correctkey {
     width: 50px;
     height: 50px;
     border: 2px solid #b3b2b2;
@@ -123,9 +123,32 @@ h1 {
     justify-content: center;
     font-size: 1.5vw;
     font-weight: bold;
-    background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
+    background: linear-gradient(rgb(240, 26, 26), rgb(175, 174, 174));
 }
-
+.misplacedkey {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(240, 144, 26), rgb(175, 174, 174));
+}
+.incorrectkey {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(133, 133, 133), rgb(175, 174, 174));
+}
 
 .input-lettre-effacer {
     background-color: #fbfbfb00;
