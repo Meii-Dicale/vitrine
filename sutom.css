@@ -168,3 +168,15 @@ img {
     cursor: pointer;
     filter: brightness(1.5);
 }
+.correctkey:hover {
+    cursor: pointer;
+    filter: brightness(1.5);
+}
+.misplacedkey:hover {
+    cursor: pointer;
+    filter: brightness(1.5);
+}
+.incorrectkey:hover {
+    cursor: pointer;
+    filter: brightness(1.5);
+}
