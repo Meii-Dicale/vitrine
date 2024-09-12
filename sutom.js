@@ -1,12 +1,12 @@
 // création d'une liste de mots 
-let words = ["pomme", "banane", "cerise", "noix", "ananas","éléphant","crocodile","chenille","chat","escargot","noël"];
+let words = ["pomme", "banane", "cerise", "noix", "ananas", "éléphant", "crocodile", "chenille", "chat", "escargot", "noël"];
 
 console.log(words);
 
 // Création d'une fonction pour choisir un mot du tableau 
 
 function randomword(words) {
-   return words[Math.floor(Math.random() * words.length)];
+    return words[Math.floor(Math.random() * words.length)];
 }
 
 // stocker le mot aléatoire dans une variable
@@ -36,72 +36,80 @@ grid.appendChild(table);
 
 // création de 6 lignes pour chaque lettre tableau
 
-for ( i = 0; i < 6; i++) {
+for (i = 0; i < 6; i++) {
     // console.log(i);
     let row = document.createElement("tr")
-    row.setAttribute("id","try"+i)
+    row.setAttribute("id", "try" + i)
     table.appendChild(row)
-    for ( j = 0; j < letters.length; j++) {
+    for (j = 0; j < letters.length; j++) {
         // console.log(j);
         let cell = document.createElement("td")
-        cell.setAttribute("id","letter"+i+j)
+        cell.setAttribute("id", "letter" + i + j)
         row.appendChild(cell)
+        if (j === 0 ) {
+            let first = letters[0]
+            cell.textContent  = first
+            console.log(cell);
+            console.log(first);
+        }
         cell = letters[j]
+       
     }
 }
-
-
 // Variable pour suivre la position de la lettre
 let currentRow = 0;
-let currentCol = 0;
+let currentCol = 1;
 console.log(currentRow +","+ currentCol)
+
 // Sélectionner toutes les divs avec un attribut data-lettre
 let lettreDivs = document.querySelectorAll('div[data-lettre]');
 // Boucle à travers chaque div et ajout de l'écouteur d'événements
 lettreDivs.forEach(div => {
-    div.addEventListener('click', function() {
+    div.addEventListener('click', function () {
         // Récupérer la valeur de l'attribut data-lettre
         let lettre = div.getAttribute('data-lettre');
         console.log('Lettre cliquée :', lettre);
         //test pour voir si lettre récupère bien la valeur        // Effacer la case précédente si on appuie sur effacer
         if (lettre === "_effacer") {
             console.log("EFFACE MOI CA");
-            console.log(currentRow +","+ currentCol)
-            let cell = document.getElementById("letter" + currentRow + (currentCol-1))
+            console.log(currentRow + "," + currentCol)
+            let cell = document.getElementById("letter" + currentRow + (currentCol - 1))
             if (currentCol > 0) {
-            currentCol--;}
-            else { return}
-            cell.textContent ="" ;
-            console.log(currentRow +","+ currentCol)
-        }else {
+                currentCol--;
+            }
+            else { return }
+            cell.textContent = "";
+            console.log(currentRow + "," + currentCol)
+        } else {
             if (currentCol < letters.length && lettre === "_entree") {
                 return
 
             }
-            if (currentCol < letters.length ) {  // S'assurer que la colonne ne dépasse pas la longueur du mot
+            if (currentCol < letters.length) {  // S'assurer que la colonne ne dépasse pas la longueur du mot
                 let cell = document.getElementById("letter" + currentRow + currentCol);
                 cell.textContent = lettre;
                 currentCol++; // Passer à la prochaine colonne
-                console.log(currentRow +","+ currentCol)
-        }
+                console.log(currentRow + "," + currentCol)
+            }
 
 
                // Si la ligne est terminée, passer à la ligne suivante et vérification de placement et victoire
                if (currentCol === letters.length && lettre === "_entree") 
                 { verify(letters, currentRow);
-                  win(letters, currentRow);
+                  let victoire = win(letters, currentRow);
+                  if (!victoire && currentRow === 5) {  // 5 car les lignes sont indexées de 0 à 5 (6 essais en tout)
+                    loose(letters, currentRow, currentCol);
+                }
 
-
-
-                
-                
-             
                 currentRow++; // passer à la ligne 
-                currentCol = 0; // Réinitialiser la colonne pour la prochaine ligne
+                currentCol = 1; // Réinitialiser la colonne pour la prochaine ligne
+
+            } else {
                 
-                }else {
-              return; }
-    }});
+                return;
+            }
+        }
+    });
 });
 
 
@@ -113,6 +121,7 @@ function verify(letters, currentRow, lettre){
         let lalettre = cell.textContent;
         let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
         console.log(keyboardKey);
+        countRepetitions(letters)
         // si la lettre de la colonne actuelle correspond la lettre du la liste (meme position) alors ajout de correct
         if (cell.textContent === letters[col]){
             cell.setAttribute("class", "correct");
@@ -121,7 +130,8 @@ function verify(letters, currentRow, lettre){
             } 
             else {
             // si la lettre de la colonne actuelle est contenu dans la liste alors ajout de misplaced
-                 if (letters.includes(cell.textContent) ) {
+            
+                 if (letters.includes(cell.textContent ) ) {
                   cell.setAttribute("class", "misplaced");
                  // ajouter une classe sur le clavier
                  keyboardKey.setAttribute("class", "misplacedkey");
@@ -154,3 +164,33 @@ function win(letters, currentRow) {
     alert("Victoire !");
     return true;  // Le joueur a gagné
 }
+// la partie est perdu si on a appuyé sur entree et que la colonne est la dernière, la ligne 6 et que la fonction win n'abouti pas
+
+
+function loose(letters, currentRow, currentCol) {
+    let cell = document.getElementById("letter" + currentRow + (currentCol - 1)); // dernière lettre entrée
+    if (currentRow === 5 && currentCol === letters.length && cell.getAttribute("class") !== "correct") {
+        alert("Perdu! Tu as raté le mot : " + letters.join(""));
+        return true; // Le joueur a perdu
+    }
+    return false; // Le joueur n'a pas encore perdu
+}
+
+function countRepetitions(letters) {
+    let letterCount = {};
+
+    letters.forEach(letter => {
+        // Si la lettre existe déjà dans l'objet, on incrémente son compteur
+        if (letterCount[letter]) {
+            letterCount[letter]++;
+        } else {
+            // Sinon, on l'ajoute avec une valeur initiale de 1
+            letterCount[letter] = 1;
+        }
+    });
+
+    return letterCount;
+}
+
+let repetitions = countRepetitions(letters);
+console.log(repetitions);

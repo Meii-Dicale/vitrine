@@ -1,54 +1,52 @@
 body {
-    color: rgb(246, 246, 247);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.5rem;
-    background-color: #181c14;
-    margin: 0;
-    padding: 0;
+	color: #181c14;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.5rem;
+	background-color: #181c14;
+	margin: 0;
+	padding: 0;
+	max-height: 100vh;
+	overflow-y: auto;
 }
 
 /*-----Partie haute------*/
 h1 {
-    text-transform: uppercase;
-    font-size: 5rem;
-    text-align: center;
-    text-shadow: 0 0 2px #FFD100, 0 0 30px #FFD100, 0px 0px 5px #FFD100, 0 0 150px #FFD100;
-    color: #FFD100;
-
-
-
+	text-transform: uppercase;
+	font-size: 5rem;
+	text-align: center;
+	text-shadow: 0 0 2px #ffd100, 0 0 30px #ffd100, 0px 0px 5px #ffd100, 0 0 150px #ffd100;
+	color: #ffd100;
 }
 
-
-
 #top-sutom {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 /*--------------test------------------------*/
 /*--------Grille----------*/
 #grid {
-    display: grid;
-    grid-gap: 10px;
-    justify-content: center;
-    margin-top: 0.625rem 0 20px 0;
+	display: grid;
+	grid-gap: 10px;
+	justify-content: center;
+	margin-top: 0.625rem 0 20px 0;
 }
 
 /*---------CSS des cellules dans la grille--------*/
 #grid td {
-    width: 4rem;
-    height: 4rem;
-    border: 2px solid #697565;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    background-color: aliceblue;
-    border-radius: 5px;
-    text-align: center;
-	color :#181c14;
+
+	width: 4rem;
+	height: 4rem;
+	border: 2px solid #697565;
+	text-align: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	background-color: aliceblue;
+	border-radius: 5px;
+	text-align: center;
+	color: #181c14;
+
 }
 
 /*-------Classes pour le JavaScript pour changer les couleurs si besoin----------*/
@@ -57,50 +55,62 @@ h1 {
 .correct {
 
 	background-color: red !important;
-    color: aliceblue;
+	color: aliceblue;
+
 }
 
 /*--Lettre mal placée--*/
 .misplaced {
-    background-color: yellow !important;
-    color: aliceblue;
+	background-color: yellow !important;
+	color: aliceblue;
 }
 
 /*--Lettre incorrecte---*/
 .incorrect {
-	background-color: #b3b2b2 !important;
+    background-color: #b3b2b2 !important;
 }
 
 /*---------Partie du clavier-----------*/
 #bot-sutom {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 #top-keyboard {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: repeat(10, 50px);
+	grid-gap: 10px;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
 #middle-keyboard {
-    display: grid;
-    grid-template-columns: repeat(10, 50px);
-    grid-gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
+	display: grid;
+	grid-template-columns: repeat(10, 50px);
+	grid-gap: 10px;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
 #bottom-keyboard {
-    display: grid;
-    grid-template-columns: repeat(8, 50px);
-    grid-gap: 10px;
-    justify-content: center;
-    margin-bottom: 20px;
-
+	display: grid;
+	grid-template-columns: repeat(8, 50px);
+	grid-gap: 10px;
+	justify-content: center;
+	margin-bottom: 20px;
 }
 
+.input-lettre {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #b3b2b2;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5vw;
+	font-weight: bold;
+	background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
+}
 .input-lettre {
     width: 50px;
     height: 50px;
@@ -113,70 +123,62 @@ h1 {
     font-weight: bold;
     background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
 }
-.correctkey {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #b3b2b2;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5vw;
-    font-weight: bold;
-    background: linear-gradient(rgb(240, 26, 26), rgb(175, 174, 174));
-}
-.misplacedkey {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #b3b2b2;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5vw;
-    font-weight: bold;
-    background: linear-gradient(rgb(240, 144, 26), rgb(175, 174, 174));
-}
-.incorrectkey {
-    width: 50px;
-    height: 50px;
-    border: 2px solid #b3b2b2;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5vw;
-    font-weight: bold;
-    background: linear-gradient(rgb(133, 133, 133), rgb(175, 174, 174));
-}
 
 .input-lettre-effacer {
-    background-color: #fbfbfb00;
-    border: 4mm ridge grey;
+	background-color: #fbfbfb00;
+	border: 4mm ridge grey;
 }
 
 .input-lettre-entree {
-    background-color: rgba(128, 128, 128, 0);
-    border: 4mm ridge grey;
+	background-color: rgba(128, 128, 128, 0);
+	border: 4mm ridge grey;
 }
 
 img {
-    width: 30px;
+	width: 30px;
 }
 
 .input-lettre:hover {
-    cursor: pointer;
-    filter: brightness(1.5);
+	cursor: pointer;
+	-webkit-filter: brightness(1.5);
+	filter: brightness(1.5);
 }
-.correctkey:hover {
-    cursor: pointer;
-    filter: brightness(1.5);
+/*--touches utilisées--*/
+.correctkey {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #b3b2b2;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5vw;
+	font-weight: bold;
+	background: red !important;
 }
-.misplacedkey:hover {
-    cursor: pointer;
-    filter: brightness(1.5);
+.misplacedkey {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #b3b2b2;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5vw;
+	font-weight: bold;
+	background: yellow !important;
+	background: linear-gradient(orange(71, 71, 72), yellow(175, 174, 174));
 }
-.incorrectkey:hover {
-    cursor: pointer;
-    filter: brightness(1.5);
+.incorrectkey {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #b3b2b2;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5vw;
+	font-weight: bold;
+	color: aliceblue;
+	background: #b3b2b2 !important;
 }
