@@ -182,3 +182,18 @@ img {
 	color: aliceblue;
 	background: #b3b2b2 !important;
 }
+.incorrectkey:hover {
+	cursor: pointer;
+	-webkit-filter: brightness(1.5);
+	filter: brightness(1.5);
+}
+.misplacedkey:hover {
+	cursor: pointer;
+	-webkit-filter: brightness(1.5);
+	filter: brightness(1.5);
+}
+.correctkey:hover {
+	cursor: pointer;
+	-webkit-filter: brightness(1.5);
+	filter: brightness(1.5);
+}
