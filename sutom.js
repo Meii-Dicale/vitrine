@@ -1,5 +1,5 @@
 // création d'une liste de mots 
-let words = ["pomme", "banane", "cerise", "noix", "ananas", "éléphant", "crocodile", "chenille", "chat", "escargot", "noël"];
+let words = ["pomme", "banane", "cerise", "noix", "ananas", "éléphant", "crocodile", "chenille", "chat", "escargot", "noël","carnaval","cuisine","service","festival",];
 
 console.log(words);
 
@@ -51,6 +51,7 @@ for (i = 0; i < 6; i++) {
             cell.textContent  = first
             console.log(cell);
             console.log(first);
+            
         }
         cell = letters[j]
        
@@ -95,7 +96,7 @@ lettreDivs.forEach(div => {
 
                // Si la ligne est terminée, passer à la ligne suivante et vérification de placement et victoire
                if (currentCol === letters.length && lettre === "_entree") 
-                { verify(letters, currentRow);
+                { verifyredAndOrange(letters, currentRow)
                   let victoire = win(letters, currentRow);
                   if (!victoire && currentRow === 5) {  // 5 car les lignes sont indexées de 0 à 5 (6 essais en tout)
                     loose(letters, currentRow, currentCol);
@@ -114,41 +115,32 @@ lettreDivs.forEach(div => {
 
 
 // Fonction de vérification des lettres ( on défini la victoire en true, et dès qu'une lettre est mal placé ou incorrect la valeur gagné passe en false)
-function verify(letters, currentRow, lettre){
+/* function verifyred(letters, currentRow, lettre, repetitions,){
     
     for (let col = 0; col < letters.length; col++) {
+        let currentAttempt = [];
         let cell = document.getElementById("letter" + currentRow + col);
         let lalettre = cell.textContent;
         let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
         console.log(keyboardKey);
         countRepetitions(letters)
+        currentAttempt.push(lalettre);
         // si la lettre de la colonne actuelle correspond la lettre du la liste (meme position) alors ajout de correct
-        if (cell.textContent === letters[col]){
+        if (cell.textContent === letters[col] && ){
             cell.setAttribute("class", "correct");
             keyboardKey.setAttribute("class", "correctkey");
+            repetitions[lalettre]--;
             
             } 
             else {
             // si la lettre de la colonne actuelle est contenu dans la liste alors ajout de misplaced
             
-                 if (letters.includes(cell.textContent ) ) {
-                  cell.setAttribute("class", "misplaced");
-                 // ajouter une classe sur le clavier
-                 keyboardKey.setAttribute("class", "misplacedkey");
-                 
-
-                 } 
-                    else {
-          
-            // si pas correct ou pas misplaced alors incorrect et victoire false
-                     cell.setAttribute("class", "incorrect");
-                     keyboardKey.setAttribute("class", "incorrectkey");
-                     
-                    } 
+                
+                    
                         
                     };       
     }
-};
+}; */
 function win(letters, currentRow) {
     for (let col = 0; col < letters.length; col++) {
         console.log(col);
@@ -162,8 +154,30 @@ function win(letters, currentRow) {
     
     // Si on arrive à la fin de la boucle, toutes les lettres sont correctes
     alert("Victoire !");
+    location.reload();
     return true;  // Le joueur a gagné
 }
+/* function verifyorange (letters , currentRow) {
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + currentRow + col);
+        let lalettre = cell.textContent;
+        let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
+        if (letters.includes(cell.textContent ) ) {
+            cell.setAttribute("class", "misplaced");
+           // ajouter une classe sur le clavier
+           keyboardKey.setAttribute("class", "misplacedkey");}
+           else {
+          
+            // si pas correct ou pas misplaced alors incorrect et victoire false
+                     cell.setAttribute("class", "incorrect");
+                     keyboardKey.setAttribute("class", "incorrectkey");
+                     
+                    } 
+           
+
+           } } */
+    
+
 // la partie est perdu si on a appuyé sur entree et que la colonne est la dernière, la ligne 6 et que la fonction win n'abouti pas
 
 
@@ -192,5 +206,55 @@ function countRepetitions(letters) {
     return letterCount;
 }
 
-let repetitions = countRepetitions(letters);
+let repetitions = countRepetitions(letters);    
 console.log(repetitions);
+
+// Changement de fonction car il faut d'abord vérifier toutes les rouges puis les oranges plutot que de vérifier cellule par cellule
+function verifyredAndOrange(letters, currentRow) {
+    // Compter le nombre d'apparitions de chaque lettre dans le mot à deviner
+    let repetitions = countRepetitions(letters);
+    console.log("Répartition des lettres dans le mot:", repetitions);
+
+    // Liste pour stocker les lettres de la tentative actuelle
+    let currentAttempt = [];
+
+    // Première passe : vérifier et marquer les lettres correctement placées (rouge)
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + currentRow + col);
+        let lalettre = cell.textContent; // on récupère la lettre pour la décompter après
+        currentAttempt.push(lalettre); // Ajouter la lettre dans la tentative actuelle
+        let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`); //ajoute la lettre qui a été tapé dans la variable
+
+        // Si la lettre est à la bonne position, on la marque comme correcte (rouge)
+        if (cell.textContent === letters[col]) {
+            cell.setAttribute("class", "correct"); // applique une classe sur la cellulle
+            keyboardKey.setAttribute("class", "correctkey"); // applique une classe sur le clavier
+            repetitions[lalettre]--; // Décrémenter le compteur de cette lettre
+        }
+    }
+
+    // Deuxième passe : vérifier les lettres mal placées (orange) ou incorrectes
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + currentRow + col);
+        let lalettre = cell.textContent; // on récupère la lettre pour la décompter après 
+        let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
+
+        // Si la lettre n'est pas correcte et est ailleurs dans le mot
+        if (cell.getAttribute("class") !== "correct" && letters.includes(lalettre)) {
+            // Si la lettre a encore des occurrences disponibles (répétitions restantes)
+            if (repetitions[lalettre] > 0) {
+                cell.setAttribute("class", "misplaced");
+                keyboardKey.setAttribute("class", "misplacedkey");
+                repetitions[lalettre]--; // Décrémenter le compteur de cette lettre
+            } else {
+                // Si la lettre est en surplus, la marquer comme incorrecte (gris)
+                cell.setAttribute("class", "incorrect");
+                keyboardKey.setAttribute("class", "incorrectkey");
+            }
+        } else if (cell.getAttribute("class") !== "correct") {
+            // Si la lettre n'est ni correcte ni mal placée, la marquer comme incorrecte
+            cell.setAttribute("class", "incorrect");
+            keyboardKey.setAttribute("class", "incorrectkey");
+        }
+    }
+}
