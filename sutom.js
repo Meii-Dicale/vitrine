@@ -149,11 +149,12 @@ lettreDivs.forEach(div => {
                   localStorage.setItem('nombreessais', nombreessais);
                   if (!victoire && currentRow === 5) {  // 5 car les lignes sont indexées de 0 à 5 (6 essais en tout)
                     loose(letters, currentRow, currentCol);
+                    
                 }
 
                 currentRow++; // passer à la ligne 
                 currentCol = 1; // Réinitialiser la colonne pour la prochaine ligne
-
+                highlightCurrentCell(currentRow, currentCol);
             } else {
                 
                 return;
