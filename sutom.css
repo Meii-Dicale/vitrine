@@ -1,50 +1,72 @@
 body {
-	color: #181c14;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 1.5rem;
-	background-color: #181c14;
-	margin: 0;
-	padding: 0;
-	max-height: 100vh;
-	overflow-y: auto;
+    color: #181c14;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    background-color: #181c14;
+    margin: 0;
+    padding: 0;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 
 /*-----Partie haute------*/
 h1 {
-	text-transform: uppercase;
-	font-size: 5rem;
-	text-align: center;
-	text-shadow: 0 0 2px #ffd100, 0 0 30px #ffd100, 0px 0px 5px #ffd100, 0 0 150px #ffd100;
-	color: #ffd100;
+    text-transform: uppercase;
+    font-size: 5rem;
+    text-align: center;
+    text-shadow: 0 0 2px #ffd100, 0 0 30px #ffd100, 0px 0px 5px #ffd100, 0 0 150px #ffd100;
+    color: #ffd100;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    text-align: center;
+    color: #ffd100;
+    margin: auto;
+    border: yellow solid;
+    width: 35%;
+    margin-top: 30px;
+
+
+}
+
+#table-victoires-defaites {
+    margin: 1vw;
+    width: 50vw;
+    text-align: center;
+    border-collapse: collapse;
 }
 
 #top-sutom {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /*--------------test------------------------*/
 /*--------Grille----------*/
 #grid {
-	display: grid;
-	grid-gap: 10px;
-	justify-content: center;
-	margin-top: 0.625rem 0 20px 0;
+    display: grid;
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 0.625rem 0 20px 0;
+    margin: 20px;
 }
 
 /*---------CSS des cellules dans la grille--------*/
 #grid td {
-	width: 4rem;
-	height: 4rem;
-	border: 2px solid #697565;
-	text-align: center;
-	font-size: 1.5rem;
-	font-weight: bold;
-	background-color: aliceblue;
-	border-radius: 5px;
-	text-align: center;
-	color: #181c14;
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid #697565;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: aliceblue;
+    border-radius: 5px;
+    text-align: center;
+    color: #181c14;
 }
 
 /*-------Classes pour le JavaScript pour changer les couleurs si besoin----------*/
@@ -52,163 +74,171 @@ h1 {
 /*--Lettre correcte--*/
 .correct {
 
-	background: rgb(255, 0, 0) !important;
-	color: aliceblue;
+    background: rgb(255, 0, 0) !important;
+    color: aliceblue;
 }
 
 /*--Lettre mal placée--*/
 .misplaced {
-	background:rgb(255, 166, 0) !important ;
-	color: aliceblue;
+    background: rgb(255, 166, 0) !important;
+    color: aliceblue;
 }
 
 /*--Lettre incorrecte---*/
 .incorrect {
-    background:  rgb(98, 97, 97) !important ;
+    background: rgb(98, 97, 97) !important;
     color: aliceblue;
 }
 
 /*---------Partie du clavier-----------*/
 #bot-sutom {
-	margin-top: 30px;
+    margin-top: 50px;
 }
 
 #top-keyboard {
-	display: grid;
-	grid-template-columns: repeat(10, 50px);
-	grid-gap: 10px;
-	justify-content: center;
-	margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 #middle-keyboard {
-	display: grid;
-	grid-template-columns: repeat(10, 50px);
-	grid-gap: 10px;
-	justify-content: center;
-	margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 #bottom-keyboard {
-	display: grid;
-	grid-template-columns: repeat(8, 50px);
-	grid-gap: 10px;
-	justify-content: center;
-	margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .input-lettre {
-	width: 50px;
-	height: 50px;
-	border: 2px solid #b3b2b2;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.5vw;
-	font-weight: bold;
-	background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
-	width: 50px;
-	height: 50px;
-	border: 2px solid #b3b2b2;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.5vw;
-	font-weight: bold;
-	background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
 }
 
 .input-lettre-effacer {
-	background-color: #fbfbfb00;
-	border: 4mm ridge grey;
+    background-color: #fbfbfb00;
+    border: 4mm ridge grey;
 }
 
 .input-lettre-entree {
-	background-color: rgba(128, 128, 128, 0);
-	border: 4mm ridge grey;
+    background-color: rgba(128, 128, 128, 0);
+    border: 4mm ridge grey;
 }
 
 img {
-	width: 30px;
+    width: 30px;
 }
 
 .input-lettre:hover {
-	cursor: pointer;
-	-webkit-filter: brightness(1.5);
-	filter: brightness(1.5);
+    cursor: pointer;
+    -webkit-filter: brightness(1.5);
+    filter: brightness(1.5);
 }
 
-.misplacedkey:hover{
+.misplacedkey:hover {
     cursor: pointer;
-	-webkit-filter: brightness(1.5);
-	filter: brightness(1.5);
+    -webkit-filter: brightness(1.5);
+    filter: brightness(1.5);
 }
-.incorrectkey:hover{
+
+.incorrectkey:hover {
     cursor: pointer;
-	-webkit-filter: brightness(1.5);
-	filter: brightness(1.5);
+    -webkit-filter: brightness(1.5);
+    filter: brightness(1.5);
 }
+
 .correctkey:hover {
     cursor: pointer;
-	-webkit-filter: brightness(1.5);
-	filter: brightness(1.5);
+    -webkit-filter: brightness(1.5);
+    filter: brightness(1.5);
 }
+
 /*--touches utilisées--*/
 .correctkey {
-	width: 50px;
-	height: 50px;
-	border: 2px solid #b3b2b2;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.5vw;
-	font-weight: bold;
-	background: linear-gradient(rgb(255, 0, 0), rgb(175, 174, 174))!important;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(255, 0, 0), rgb(175, 174, 174)) !important;
 }
+
 .misplacedkey {
-	width: 50px;
-	height: 50px;
-	border: 2px solid #b3b2b2;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.5vw;
-	font-weight: bold;	
-	background: linear-gradient(rgb(255, 166, 0) , rgb(175, 174, 174))!important;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    background: linear-gradient(rgb(255, 166, 0), rgb(175, 174, 174)) !important;
 }
+
 .incorrectkey {
-	width: 50px;
-	height: 50px;
-	border: 2px solid #b3b2b2;
-	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-size: 1.5vw;
-	font-weight: bold;
-	color: rgb(0, 0, 0);
-	background: linear-gradient(rgb(0, 0, 0) , rgb(98, 97, 97))!important;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #b3b2b2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background: linear-gradient(rgb(0, 0, 0), rgb(98, 97, 97)) !important;
 }
 
 @media only screen and (max-width: 600px) {
-	body {
-		width: 80%;
-	}
-	.input-lettre {
-		font-size: 1.5rem;
-	}
-	.correctkey {
-		font-size: 1.5rem;
-	}
-	.misplacedkey {
-		font-size: 1.5rem;
-	}
+    body {
+        width: 80%;
+    }
 
-	.incorrectkey {
-		font-size: 1.5rem;
-	}
+    .input-lettre {
+        font-size: 1.5rem;
+    }
+
+    .correctkey {
+        font-size: 1.5rem;
+    }
+
+    .misplacedkey {
+        font-size: 1.5rem;
+    }
+
+    .incorrectkey {
+        font-size: 1.5rem;
+    }
 }

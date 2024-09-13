@@ -1,7 +1,49 @@
+// TEST LOCAL STORAGE POUR LES VICTOIRES 
+
+let compteurwin = 0
+let compteurloose = 0
+let nombreessais = 0
+let moyenne = 0
+
+
+
+if (localStorage.getItem('compteurwin')) {
+    compteurwin = parseInt(localStorage.getItem('compteurwin'))
+}
+
+if (localStorage.getItem('compteurloose')) {
+    compteurloose = parseInt(localStorage.getItem('compteurloose'))
+}
+if (localStorage.getItem('moyenne')) {
+    moyenne = parseInt(localStorage.getItem('moyenne'))
+}
+if (localStorage.getItem('nombreessais')) {
+    nombreessais = parseInt(localStorage.getItem('nombreessais'))
+}
+if (compteurwin > 0) {
+    moyenne = Math.round(nombreessais / (compteurwin + compteurloose));
+}
+console.log ( "essais" + nombreessais)
+console.log('moyenne'+ moyenne)
+
+
+console.log('win' + compteurwin) //
+console.log('loose'+ compteurloose)
+
+vic = document.getElementById('victoires')
+vic.innerHTML = compteurwin
+loss = document.getElementById('defaites')
+loss.innerHTML = compteurloose
+moy = document.getElementById('tentatives')
+moy.innerHTML = moyenne
+
+
+////////////////////////////////
+
 // création d'une liste de mots 
 let words = ["pomme", "banane", "cerise", "noix", "ananas", "éléphant", "crocodile", "chenille", "chat", "escargot", "noël","carnaval","cuisine","service","festival",];
 
-console.log(words);
+// console.log(words);
 
 // Création d'une fonction pour choisir un mot du tableau 
 
@@ -12,7 +54,7 @@ function randomword(words) {
 // stocker le mot aléatoire dans une variable
 let random = randomword(words);
 let majuscule = random.toUpperCase()
-console.log(random);
+// console.log(random);
 
 let sansAccents = majuscule.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
@@ -20,12 +62,12 @@ let sansAccents = majuscule.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 
 let letters = sansAccents.split("");
-console.log(letters);
+// console.log(letters);
 
 // compter le nombre d'élément dans letters
 
 let count = letters.length;
-console.log(count);
+// console.log(count);
 
 // créer un tableau dans la div grid
 let grid = document.getElementById("grid")
@@ -37,20 +79,20 @@ grid.appendChild(table);
 // création de 6 lignes pour chaque lettre tableau
 
 for (i = 0; i < 6; i++) {
-    // console.log(i);
+    // // console.log(i);
     let row = document.createElement("tr")
     row.setAttribute("id", "try" + i)
     table.appendChild(row)
     for (j = 0; j < letters.length; j++) {
-        // console.log(j);
+        // // console.log(j);
         let cell = document.createElement("td")
         cell.setAttribute("id", "letter" + i + j)
         row.appendChild(cell)
         if (j === 0 ) {
             let first = letters[0]
             cell.textContent  = first
-            console.log(cell);
-            console.log(first);
+            // console.log(cell);
+            // console.log(first);
             
         }
         cell = letters[j]
@@ -60,7 +102,7 @@ for (i = 0; i < 6; i++) {
 // Variable pour suivre la position de la lettre
 let currentRow = 0;
 let currentCol = 1;
-console.log(currentRow +","+ currentCol)
+// console.log(currentRow +","+ currentCol)
 
 // Sélectionner toutes les divs avec un attribut data-lettre
 let lettreDivs = document.querySelectorAll('div[data-lettre]');
@@ -69,18 +111,18 @@ lettreDivs.forEach(div => {
     div.addEventListener('click', function () {
         // Récupérer la valeur de l'attribut data-lettre
         let lettre = div.getAttribute('data-lettre');
-        console.log('Lettre cliquée :', lettre);
+        // console.log('Lettre cliquée :', lettre);
         //test pour voir si lettre récupère bien la valeur        // Effacer la case précédente si on appuie sur effacer
         if (lettre === "_effacer") {
-            console.log("EFFACE MOI CA");
-            console.log(currentRow + "," + currentCol)
+            // console.log("EFFACE MOI CA");
+            // console.log(currentRow + "," + currentCol)
             let cell = document.getElementById("letter" + currentRow + (currentCol - 1))
             if (currentCol > 0) {
                 currentCol--;
             }
             else { return }
             cell.textContent = "";
-            console.log(currentRow + "," + currentCol)
+            // console.log(currentRow + "," + currentCol)
         } else {
             if (currentCol < letters.length && lettre === "_entree") {
                 return
@@ -90,7 +132,8 @@ lettreDivs.forEach(div => {
                 let cell = document.getElementById("letter" + currentRow + currentCol);
                 cell.textContent = lettre;
                 currentCol++; // Passer à la prochaine colonne
-                console.log(currentRow + "," + currentCol)
+                // console.log(currentRow + "," + currentCol)
+
             }
 
 
@@ -98,6 +141,8 @@ lettreDivs.forEach(div => {
                if (currentCol === letters.length && lettre === "_entree") 
                 { verifyredAndOrange(letters, currentRow)
                   let victoire = win(letters, currentRow);
+                  nombreessais ++;
+                  localStorage.setItem('nombreessais', nombreessais);
                   if (!victoire && currentRow === 5) {  // 5 car les lignes sont indexées de 0 à 5 (6 essais en tout)
                     loose(letters, currentRow, currentCol);
                 }
@@ -113,6 +158,36 @@ lettreDivs.forEach(div => {
     });
 });
 
+addEventListener('keydown', function (event) {
+    // Convertir la touche en majuscule
+    let maj = event.key;
+    let lettre = maj.toUpperCase();
+
+    console.log('Touche pressée :', event.key);
+    
+    // Vérifier si c'est la touche "Backspace" pour effacer
+    if (event.key === "Backspace") {
+        lettre = "_effacer";
+        console.log('Lettre :', lettre);
+    }
+
+    // Sélectionner le div correspondant à la lettre
+    let lettreDiv = document.querySelector(`div[data-lettre='${lettre}']`);
+
+    // Si un div existe pour cette lettre, simuler un clic
+    if (lettreDiv) {
+        lettreDiv.click();
+    }
+
+    // Gérer l'appui sur "Enter" pour valider
+    if (event.key === "Enter") {
+        let entreeDiv = document.querySelector(`div[data-lettre='_entree']`);
+        if (entreeDiv) {
+            entreeDiv.click();
+        }
+    }
+});
+
 
 // Fonction de vérification des lettres ( on défini la victoire en true, et dès qu'une lettre est mal placé ou incorrect la valeur gagné passe en false)
 /* function verifyred(letters, currentRow, lettre, repetitions,){
@@ -122,7 +197,7 @@ lettreDivs.forEach(div => {
         let cell = document.getElementById("letter" + currentRow + col);
         let lalettre = cell.textContent;
         let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
-        console.log(keyboardKey);
+        // console.log(keyboardKey);
         countRepetitions(letters)
         currentAttempt.push(lalettre);
         // si la lettre de la colonne actuelle correspond la lettre du la liste (meme position) alors ajout de correct
@@ -143,7 +218,7 @@ lettreDivs.forEach(div => {
 }; */
 function win(letters, currentRow) {
     for (let col = 0; col < letters.length; col++) {
-        console.log(col);
+        // console.log(col);
         let cell = document.getElementById("letter" + currentRow + col);
         
         // Si une des lettres n'est pas correcte, retour sans victoire
@@ -154,6 +229,8 @@ function win(letters, currentRow) {
     
     // Si on arrive à la fin de la boucle, toutes les lettres sont correctes
     alert("Victoire !");
+    compteurwin++;
+    localStorage.setItem('compteurwin', compteurwin);
     location.reload();
     return true;  // Le joueur a gagné
 }
@@ -181,10 +258,13 @@ function win(letters, currentRow) {
 // la partie est perdu si on a appuyé sur entree et que la colonne est la dernière, la ligne 6 et que la fonction win n'abouti pas
 
 
-function loose(letters, currentRow, currentCol) {
+function loose(letters, currentRow, currentCol, compteurloose) {
     let cell = document.getElementById("letter" + currentRow + (currentCol - 1)); // dernière lettre entrée
     if (currentRow === 5 && currentCol === letters.length && cell.getAttribute("class") !== "correct") {
         alert("Perdu! Tu as raté le mot : " + letters.join(""));
+        compteurloose++;
+        localStorage.setItem('compteurloose', compteurloose);
+        location.reload();
         return true; // Le joueur a perdu
     }
     return false; // Le joueur n'a pas encore perdu
@@ -207,13 +287,13 @@ function countRepetitions(letters) {
 }
 
 let repetitions = countRepetitions(letters);    
-console.log(repetitions);
+// console.log(repetitions);
 
 // Changement de fonction car il faut d'abord vérifier toutes les rouges puis les oranges plutot que de vérifier cellule par cellule
 function verifyredAndOrange(letters, currentRow) {
     // Compter le nombre d'apparitions de chaque lettre dans le mot à deviner
     let repetitions = countRepetitions(letters);
-    console.log("Répartition des lettres dans le mot:", repetitions);
+    // console.log("Répartition des lettres dans le mot:", repetitions);
 
     // Liste pour stocker les lettres de la tentative actuelle
     let currentAttempt = [];
@@ -257,4 +337,6 @@ function verifyredAndOrange(letters, currentRow) {
             keyboardKey.setAttribute("class", "incorrectkey");
         }
     }
-}
+};
+
+
