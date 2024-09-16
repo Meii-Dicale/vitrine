@@ -31,6 +31,8 @@ loss.innerHTML = compteurloose
 moy = document.getElementById('tentatives')
 moy.innerHTML = moyenne
 ////////////////////////////////
+
+
 // création d'une liste de mots 
 let words = ["pomme", "banane", "cerise", "noix", "ananas", "éléphant", "crocodile", "chenille", "chat", "escargot", "noël","carnaval","cuisine","service","festival",];
 // console.log(words);
@@ -123,9 +125,11 @@ lettreDivs.forEach(div => {
                   localStorage.setItem('nombreessais', nombreessais);
                   if (!victoire && currentRow === 5) {  // 5 car les lignes sont indexées de 0 à 5 (6 essais en tout)
                     loose(letters, currentRow, currentCol);
+                    
                 }
                 currentRow++; // passer à la ligne 
                 currentCol = 1; // Réinitialiser la colonne pour la prochaine ligne
+                rewriteCorrectLetters(currentRow); 
                 highlightCurrentCell(currentRow, currentCol); // Mettre à jour la surbrillance
             } else {
                 
@@ -256,10 +260,15 @@ function countRepetitions(letters) {
 }
 let repetitions = countRepetitions(letters);    
 // console.log(repetitions);
+
+
+
+
 // Changement de fonction car il faut d'abord vérifier toutes les rouges puis les oranges plutot que de vérifier cellule par cellule
 function verifyredAndOrange(letters, currentRow) {
     // Compter le nombre d'apparitions de chaque lettre dans le mot à deviner
     let repetitions = countRepetitions(letters);
+
     // console.log("Répartition des lettres dans le mot:", repetitions);
     // Liste pour stocker les lettres de la tentative actuelle
     let currentAttempt = [];
@@ -274,10 +283,7 @@ function verifyredAndOrange(letters, currentRow) {
             cell.setAttribute("class", "correct"); // applique une classe sur la cellulle
             keyboardKey.setAttribute("class", "correctkey"); // applique une classe sur le clavier
             repetitions[lalettre]--; // Décrémenter le compteur de cette lettre
-            let cellbot = document.getElementById("letter" + (currentRow+1) + col);
-            if (cellbot) {  // Vérifier si cellbot existe
-                cellbot.textContent = lalettre; // Afficher la lettre dans la cellule de la ligne suivante
-            }
+            
             
             // Si on a atteint la dernière cellule de la ligne actuelle
             if (col === letters.length - 1) {
@@ -308,6 +314,7 @@ function verifyredAndOrange(letters, currentRow) {
             keyboardKey.setAttribute("class", "incorrectkey");
         }
     }
+
 };
 // Fonction pour ajouter une surbrillance à la cellule active
 function highlightCurrentCell(row, col) {
@@ -344,3 +351,52 @@ start.addEventListener("click", function() {
     document.querySelector(".container").style.filter = "none";
     document.querySelector("#start").style.display = "none";
 });
+
+ 
+
+// Fonction pour stocker les lettres bien placées et les réécrire à la ligne suivante
+function bonneLettres(currentRow) {
+    // Tableau pour stocker les lettres correctement placées
+    let correctLetters = [];
+
+    // Parcourir chaque cellule de la ligne actuelle
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + currentRow + col);
+        // Vérifier si la lettre est correcte
+        if (cell.getAttribute("class") === "correct") {
+            correctLetters[col] = cell.textContent;
+        } else {
+            // Si la lettre n'est pas correcte, mettre un vide pour cette colonne
+            correctLetters[col] = "";
+        }
+    }
+
+    // Réécrire les lettres correctement placées à la ligne suivante
+    let nextRow = currentRow + 1;
+    for (let col = 0; col < letters.length; col++) {
+        let cell = document.getElementById("letter" + nextRow + col);
+        if (cell) {
+            cell.textContent = correctLetters[col];
+        }
+    }
+}
+
+// Fonction pour récupérer toutes les lettres bien placées et les réécrire sur la ligne en cours
+function rewriteCorrectLetters(currentRow) {
+    // Parcourir chaque ligne précédente
+    for (let row = 0; row < currentRow; row++) {
+        // Parcourir chaque cellule de la ligne précédente
+        for (let col = 0; col < letters.length; col++) {
+            let cell = document.getElementById("letter" + row + col);
+            // Vérifier si la lettre est bien placée (classe "correct")
+            if (cell.getAttribute("class") === "correct") {
+                // Réécrire la lettre bien placée sur la ligne actuelle
+                let currentCell = document.getElementById("letter" + currentRow + col);
+                if (currentCell) {
+                    currentCell.textContent = cell.textContent; // Copier la lettre correctement placée
+                }
+            }
+        }
+    }
+};
+
