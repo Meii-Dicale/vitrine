@@ -9,37 +9,42 @@
 </head>
 
 <body>
-    
-            <div id="start-part">
-                <button id="start">COMMENCER</button>
-            </div>
-            
+
+    <div id="start-part">
+        <button id="start">COMMENCER         
+        </button>
+    </div>
+
     <section class="container">
         <div id="top-sutom">
             <div id="title">
                 <h1>sutom</h1>
             </div>
 
-            <div id="reset-part"></div>
-                <button id="reset">Reinitialiser</button>
-            </div>
-
             <div id="score">
                 <table id="table-victoires-defaites">
-                    <tr>
-                        <th>Victoires</th>
-                        <th>Défaites</th>
-                        <th>Moyenne d'essais</th>
+                    <th class="th-part">
+                        <div id="reset-part">
+                            <button id="reset">REINISIALISATION</button>
+                        </div>
+                    </th>
+
+                    <tr class="tr-part">
+                        <th>Nombre de victoires</th>
+                        <th>Nombre de défaites</th>
+                        <th>Moyen d'essais</th>
                     </tr>
-                    <tr>
+                    <tr class="tr-part">
                         <td id="victoires">0</td>
                         <td id="defaites">0</td>
                         <td id="tentatives">0</td>
                     </tr>
                 </table>
             </div>
+        </div>
 
-            <div id="grid"></div>
+
+        <div id="grid"></div>
         </div>
 
         <div id="bot-sutom">
@@ -87,4 +92,3 @@
 </body>
 
 </html>
-
