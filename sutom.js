@@ -328,15 +328,16 @@ function verifyredAndOrange(letters, currentRow) {
            // }
         }
     }
-    // Deuxième passe : vérifier les lettres mal placées (orange) ou incorrectes
-    for (let col = 0; col < letters.length; col++) {
-        let cell = document.getElementById("letter" + currentRow + col);
-        let lalettre = cell.textContent; // on récupère la lettre pour la décompter après 
-        let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
-        // Si la lettre n'est pas correcte et est ailleurs dans le mot
-        // console .log(lalettre);// on récupère la lettre pour la décompter après
-        if (cell.getAttribute("class") !== "correct" && letters.includes(lalettre)) {
-            // Si la lettre a encore des occurrences disponibles (répétitions restantes)
+// Deuxième passe : vérifier les lettres mal placées (orange) ou incorrectes (gris)
+for (let col = 0; col < letters.length; col++) {
+    let cell = document.getElementById("letter" + currentRow + col);
+    let lalettre = cell.textContent; // Récupère la lettre pour la décompter après 
+    let keyboardKey = document.querySelector(`div[data-lettre='${lalettre}']`);
+
+    // Si la lettre n'est pas correcte et est ailleurs dans le mot
+    if (cell.getAttribute("class") !== "correct") {
+        if (letters.includes(lalettre)) {
+            // Si la lettre est mal placée mais encore présente dans le mot
             if (repetitions[lalettre] > 0) {
                 cell.setAttribute("class", "misplaced");
                 keyboardKey.setAttribute("class", "misplacedkey");
@@ -346,8 +347,14 @@ function verifyredAndOrange(letters, currentRow) {
                 cell.setAttribute("class", "incorrect");
                 keyboardKey.setAttribute("class", "incorrectkey");
             }
-        } 
+        } else {
+            // Si la lettre n'est pas du tout dans le mot
+            cell.setAttribute("class", "incorrect");
+            keyboardKey.setAttribute("class", "incorrectkey");
+        }
     }
+}
+
 
 };
 // Fonction pour ajouter une surbrillance à la cellule active
