@@ -207,16 +207,6 @@ tr {
     font-size: 1.5rem;
     font-weight: bold;
     background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
-    width: 50px;
-    height: 50px;
-    border: 2px solid #b3b2b2;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5vw;
-    font-weight: bold;
-    background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
 }
 
 .input-lettre-effacer {
@@ -299,9 +289,31 @@ img {
 }
 
 @media only screen and (max-width: 780px) {
+    #start{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+	    top: 50%;
+	    left: 20%;
+	    width: 10em;
+        
+    }
     .container {
         width: 80%;
         height: 80%;
+    }
+    #grid td {
+        width: 2rem;
+        height: 2rem;
+        border: 2px solid #697565;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background-color: aliceblue;
+        border-radius: 5px;
+        text-align: center;
+        color: #181c14;
     }
 
     .h1 {
@@ -319,4 +331,82 @@ img {
     .incorrectkey {
         font-size: 1.5rem;
     }
+
+    .input-lettre {
+        width: 25px;
+        height: 25px;
+        border: 2px solid #b3b2b2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(rgb(71, 71, 72), rgb(175, 174, 174));
+    }
+    #top-keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 40px);
+        grid-gap: 1px;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-left: 170px;
+    }
+    
+    #middle-keyboard {
+        display: grid;
+        grid-template-columns: repeat(10, 40px);
+        grid-gap: 1px;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-left: 170px;
+    }
+    
+    #bottom-keyboard {
+        display: grid;
+        grid-template-columns: repeat(8, 40px);
+        grid-gap: 1px;
+        justify-content: center;
+        margin-bottom: 20px;
+        margin-left: 170px;
+    }
+    .correctkey {
+        width: 25px;
+        height: 25px;
+        border: 2px solid #b3b2b2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(rgb(255, 0, 0), rgb(175, 174, 174)) !important;
+    }
+    
+    .misplacedkey {
+        width: 25px;
+        height: 25px;
+        border: 2px solid #b3b2b2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background: linear-gradient(rgb(255, 166, 0), rgb(175, 174, 174)) !important;
+    }
+    
+    .incorrectkey {
+        width: 25px;
+        height: 25px;
+        border: 2px solid #b3b2b2;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+        background: linear-gradient(rgb(0, 0, 0), rgb(98, 97, 97)) !important;
+    
 }
