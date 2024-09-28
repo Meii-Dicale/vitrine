@@ -507,4 +507,27 @@ input{
         margin-top: 200px;
         margin-bottom: 200px;
     }
+    #seventh {
+        display: flex;
+        
+        justify-content: space-evenly;
+        align-items: center;
+        background-image: url(./pilule.jpeg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 300px;
+    }
+    #clickme {
+        width: 150px;
+        height: 100px;
+        cursor: pointer;
+        margin-top: 2px;
+    }
+    #dontclickme {
+         width: 150px;
+        height: 100px;
+        cursor: pointer;
+        margin-top: 1px;
+    }
+    
 }
