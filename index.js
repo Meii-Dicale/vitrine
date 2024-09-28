@@ -1,21 +1,46 @@
-let red = document.getElementById ('clickme');
-let blue = document.getElementById ('dontclickme');
+let red = document.getElementById('clickme');
+let blue = document.getElementById('dontclickme');
 let body = document.querySelector("body");
+let matrice = document.getElementById("matrice");
+let navbar = document.querySelector(".navbar"); // Assurez-vous que l'élément navbar a cette classe
+let originalMatriceSrc = matrice.src; // Sauvegarde de l'URL originale de l'image
 
 red.addEventListener("click", function() {
-    body.classList.value = "pilulered";
-     // ajouter les enfants du body 
-    const children = document.querySelectorAll("body ");
-    console.log(children);
+    body.classList.add("pilulered"); // Ajoute plutôt que remplace toutes les classes
+    
+    // Sélectionner et changer la classe des enfants du body
+    const children = body.querySelectorAll("*");
     children.forEach(function(child) {
-        console.log(child);
-        child.classList.value = "pilulered";
+        child.classList.add("pilulered");
     });
   
-    const navbar = document.querySelectorAll("navbar");
-    console.log(navbar);
-    navbar.classList.value ="rednavbar";
-})
+    // Changer la classe de la navbar
+    if (navbar) {
+        navbar.classList.add("rednavbar");
+    }
+    
+    // Remplacer le gif de la matrice par le lapin
+    if (matrice) {
+        matrice.src = "lapin.gif";
+    }
+});
 
-// cliquer sur red pour ajouter la class pilulered à tous les éléments enfants du body
-
+blue.addEventListener("click", function() {
+    // Enlever la classe pilulered du body et des enfants
+    body.classList.remove("pilulered");
+    
+    const children = body.querySelectorAll("*");
+    children.forEach(function(child) {
+        child.classList.remove("pilulered");
+    });
+    
+    // Enlever la classe rednavbar de la navbar
+    if (navbar) {
+        navbar.classList.remove("rednavbar");
+    }
+    
+    // Remettre l'image originale dans la matrice
+    if (matrice) {
+        matrice.src = "matrix.gif";
+    }
+});
