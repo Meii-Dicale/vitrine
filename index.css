@@ -383,12 +383,14 @@ input{
     height: 100px;
     cursor: pointer;
     margin-top: 200px;
+    background-color: transparent !important;
 }
 #dontclickme {
      width: 150px;
     height: 100px;
     cursor: pointer;
     margin-top: 200px;
+    background-color: transparent !important;
 }
 #top-projet {
 
