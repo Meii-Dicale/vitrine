@@ -12,8 +12,9 @@ red.addEventListener("click", function() {
         child.classList.value = "pilulered";
     });
   
-//    const navbar = document.querySelectorAll("navbar");
-  //  navbar.classList("rednavbar");
+    const navbar = document.querySelectorAll("navbar");
+    console.log(navbar);
+    navbar.classList.value ="rednavbar";
 })
 
 // cliquer sur red pour ajouter la class pilulered à tous les éléments enfants du body
