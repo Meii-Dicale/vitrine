@@ -424,10 +424,13 @@ input{
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
+    
 }
 #description-projet > p {
     font-size: 20px;
     text-align: justify;
+    margin-right: 20px;
+    
 }
 #apprentissage {
     width: 30vw;
@@ -446,9 +449,10 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 #image-projet > img {
-    width: 90%;
+    width: 50%;
     height: auto;
     margin-left: 40px;
 }
